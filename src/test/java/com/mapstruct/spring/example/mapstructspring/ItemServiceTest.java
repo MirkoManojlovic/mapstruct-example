@@ -2,17 +2,16 @@ package com.mapstruct.spring.example.mapstructspring;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mapstruct.factory.Mappers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.test.context.ContextConfiguration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
-@ContextConfiguration(classes = {ItemMapper.class})
 public class ItemServiceTest {
 
     @Mock
@@ -22,7 +21,7 @@ public class ItemServiceTest {
     private ItemService itemService;
 
     @Spy
-    private ItemMapper itemMapper;
+    private ItemMapper itemMapper = Mappers.getMapper(ItemMapper.class);
 
     @Test
     void shouldReturnItemDto() {
